@@ -8,10 +8,7 @@ void main() {
       AppTheme.light.textTheme.bodyMedium?.fontFamily,
       'IBMPlexSansArabic',
     );
-    expect(
-      AppTheme.dark.textTheme.bodyMedium?.fontFamily,
-      'IBMPlexSansArabic',
-    );
+    expect(AppTheme.dark.textTheme.bodyMedium?.fontFamily, 'IBMPlexSansArabic');
   });
 
   test(
