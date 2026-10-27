@@ -26,14 +26,14 @@ class AppTextField extends StatelessWidget {
     this.maxLines = 1,
     this.minLines,
     super.key,
-  })  : assert(
-          controller == null || initialValue == null,
-          'Provide a controller or initialValue, not both.',
-        ),
-        assert(
-          !obscureText || maxLines == 1,
-          'Obscured fields must use a single line.',
-        );
+  }) : assert(
+         controller == null || initialValue == null,
+         'Provide a controller or initialValue, not both.',
+       ),
+       assert(
+         !obscureText || maxLines == 1,
+         'Obscured fields must use a single line.',
+       );
 
   final String label;
   final String? hint;

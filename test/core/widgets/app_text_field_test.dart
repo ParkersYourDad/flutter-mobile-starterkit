@@ -30,7 +30,9 @@ void main() {
     expect(values, ['Example']);
   });
 
-  testWidgets('error text is visible and field can be disabled', (tester) async {
+  testWidgets('error text is visible and field can be disabled', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         theme: AppTheme.light,
