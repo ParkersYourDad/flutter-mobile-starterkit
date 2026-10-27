@@ -15,7 +15,7 @@ class SettingsScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final settingsValue = ref.watch(appSettingsControllerProvider);
-    final settings = settingsValue.valueOrNull ?? const AppSettings();
+    final settings = settingsValue.value ?? const AppSettings();
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settingsTitle)),
