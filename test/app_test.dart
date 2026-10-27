@@ -115,7 +115,7 @@ void main() {
         matching: find.byType(Icon),
       ),
     );
-    expect(backIcon.matchTextDirection, isTrue);
+    expect(backIcon.icon.matchTextDirection, isTrue);
     expect(
       Directionality.of(tester.element(find.byType(BackButtonIcon))),
       TextDirection.rtl,
