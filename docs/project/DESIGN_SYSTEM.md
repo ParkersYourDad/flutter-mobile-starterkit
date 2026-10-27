@@ -19,7 +19,7 @@ Initial semantic scale:
 - Section heading: 20
 - Page heading: 24
 
-These are design tokens, not permission to hardcode sizes in screens. Verify legibility at increased text scale and on compact devices. IBM Plex Sans Arabic is the preferred candidate; verify licensing, Arabic shaping, bundled font assets, and weight availability before adoption. Provide sensible fallback behavior.
+These are design tokens, not permission to hardcode sizes in screens. Verify legibility at increased text scale and on compact devices. IBM Plex Sans Arabic Regular and SemiBold are bundled from IBM/plex commit `71f558992315a12ca1f06a2215d57962a1992162`. The font package's SIL Open Font License 1.1 is included alongside the assets in `assets/fonts/ibm_plex_sans_arabic/OFL.txt`. The family is applied centrally as `IBMPlexSansArabic`; verify shaping and glyph fallback on physical iOS and Android devices before release.
 
 ## Spacing and shape
 

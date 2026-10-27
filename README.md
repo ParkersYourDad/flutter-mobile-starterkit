@@ -6,16 +6,17 @@ A focused Flutter foundation for Android and iOS, with neutral design tokens, Ar
 
 - Material 3 foundations with neutral Light and Dark themes and System mode.
 - Central design tokens for color, spacing, radii, typography, and layout widths.
+- Bundled IBM Plex Sans Arabic Regular and SemiBold fonts under the included SIL Open Font License 1.1.
 - Arabic and English strings using Flutter localization generation.
 - Riverpod 3 settings controller and a small persistence boundary using SharedPreferences.
 - Declarative routing with correct framework-aware back affordance.
-- Shared buttons, surfaces, section headers, loading, empty, error, and skeleton states.
-- Unit tests for settings persistence and widget tests for routing and RTL behavior.
-- GitHub Actions for format validation, static analysis, and tests.
+- Shared buttons, inputs, surfaces, section headers, bottom navigation, and loading/empty/error/skeleton states.
+- Unit, widget, and targeted Light/Dark golden tests for shared components.
+- GitHub Actions for formatting, static analysis, tests, and Android/iOS simulator builds.
 
 ## Repository status
 
-The app source is committed. Native Android/iOS project scaffolding, actual CI results, physical-device checks, accessibility review, licensing, and release readiness remain separate verification items. Do not treat this starter as release-ready until those gates pass.
+The app source and native Android/iOS project scaffolding are committed. CI verifies formatting, analysis, tests, and platform builds. Physical-device checks, a targeted accessibility review, the repository's own reuse license decision, and release readiness remain open gates. Do not treat this starter as release-ready until those gates pass.
 
 ## Toolchain and local checks
 

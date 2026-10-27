@@ -37,14 +37,17 @@ abstract final class AppTheme {
       surfaceTint: Colors.transparent,
     );
 
+    const fontFamily = 'IBMPlexSansArabic';
     final baseTextTheme = ThemeData(
       brightness: brightness,
       useMaterial3: true,
+      fontFamily: fontFamily,
     ).textTheme;
 
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
+      fontFamily: fontFamily,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: canvas,
       dividerColor: divider,

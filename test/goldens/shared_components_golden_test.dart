@@ -28,7 +28,7 @@ void main() {
 
       await expectLater(
         find.byType(MaterialApp),
-        matchesGoldenFile('goldens/shared_components_$themeName.png'),
+        matchesGoldenFile('shared_components_$themeName.png'),
       );
     });
   }
