@@ -13,8 +13,7 @@ class StarterApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings =
-        ref.watch(appSettingsControllerProvider).value ??
-        const AppSettings();
+        ref.watch(appSettingsControllerProvider).value ?? const AppSettings();
 
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
