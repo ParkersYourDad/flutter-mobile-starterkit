@@ -1,0 +1,38 @@
+name: Shared Component Golden Bootstrap
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-goldens:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter gen-l10n
+      - name: Generate golden baselines
+        run: flutter test --update-goldens test/goldens/shared_components_golden_test.dart
+      - name: Commit golden assets
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add test/goldens/*.png
+          if git diff --cached --quiet; then
+            echo "Golden baselines are already up to date."
+            exit 0
+          fi
+          git commit -m "test: add light and dark component goldens [skip ci]"
+          git push origin HEAD:main
