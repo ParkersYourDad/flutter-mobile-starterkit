@@ -1,0 +1,42 @@
+name: One-time Source Preparation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install Flutter stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Resolve dependencies
+        run: flutter pub get
+      - name: Generate localizations
+        run: flutter gen-l10n
+      - name: Format Dart source
+        run: dart format lib test
+      - name: Commit formatted source and lockfile
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lib test pubspec.lock analysis_options.yaml
+          if git diff --cached --quiet; then
+            echo "Source is formatted and dependency lock is current."
+            exit 0
+          fi
+          git commit -m "chore: format Dart source and lock dependencies [skip ci]"
+          git push origin HEAD:main
