@@ -23,7 +23,7 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final VoidCallback? effectiveOnPressed = loading ? null : onPressed;
-    final child = _buildChild();
+    final child = _buildChild(context);
 
     final Widget button = switch (variant) {
       AppButtonVariant.primary => FilledButton(
@@ -47,18 +47,26 @@ class AppButton extends StatelessWidget {
     return SizedBox(width: width, child: button);
   }
 
-  Widget _buildChild() {
+  Widget _buildChild(BuildContext context) {
     if (!loading) {
       return Text(label);
     }
 
+    final theme = Theme.of(context);
+    final progressColor = variant == AppButtonVariant.primary
+        ? theme.colorScheme.onPrimary
+        : theme.colorScheme.primary;
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(
+        SizedBox(
           width: AppTokens.space16,
           height: AppTokens.space16,
-          child: CircularProgressIndicator(strokeWidth: 2),
+          child: CircularProgressIndicator(
+            color: progressColor,
+            strokeWidth: 2,
+          ),
         ),
         const SizedBox(width: AppTokens.space12),
         Text(label),

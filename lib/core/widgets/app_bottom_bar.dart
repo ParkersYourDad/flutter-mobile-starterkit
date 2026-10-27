@@ -80,9 +80,11 @@ class _BottomBarItem extends StatelessWidget {
       button: true,
       selected: selected,
       label: destination.label,
-      child: MergeSemantics(
-        child: InkWell(
-          onTap: onTap,
+      onTap: onTap,
+      child: InkWell(
+        excludeFromSemantics: true,
+        onTap: onTap,
+        child: ExcludeSemantics(
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               minHeight: AppTokens.controlMinHeight,
