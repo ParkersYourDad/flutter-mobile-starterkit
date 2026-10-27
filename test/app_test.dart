@@ -109,7 +109,17 @@ void main() {
 
     expect(find.text('التفضيلات'), findsOneWidget);
     expect(find.byType(BackButtonIcon), findsOneWidget);
-    expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
+    final backIcon = tester.widget<Icon>(
+      find.descendant(
+        of: find.byType(BackButtonIcon),
+        matching: find.byType(Icon),
+      ),
+    );
+    expect(backIcon.matchTextDirection, isTrue);
+    expect(
+      Directionality.of(tester.element(find.byType(BackButtonIcon))),
+      TextDirection.rtl,
+    );
     expect(tester.takeException(), isNull);
   });
 
