@@ -9,28 +9,28 @@ A focused Flutter foundation for Android and iOS, with neutral design tokens, Ar
 - Bundled IBM Plex Sans Arabic Regular and SemiBold fonts under the included SIL Open Font License 1.1.
 - Arabic and English strings using Flutter localization generation.
 - Riverpod 3 settings controller and a small persistence boundary using SharedPreferences.
-- Declarative routing with correct framework-aware back affordance.
+- Declarative routing with framework-aware back navigation.
 - Shared buttons, inputs, surfaces, section headers, bottom navigation, and loading/empty/error/skeleton states.
-- Unit, widget, and targeted Light/Dark golden tests for shared components.
-- GitHub Actions for formatting, static analysis, tests, and Android/iOS simulator builds.
+- Unit, widget, and targeted Light/Dark golden tests.
+- GitHub Actions for formatting, static analysis, tests, and Android/iOS simulator builds on code-relevant changes.
 
-## Repository status
+## Quick start
 
-The app source and native Android/iOS project scaffolding are committed. CI verifies formatting, analysis, tests, and platform builds. Physical-device checks, a targeted accessibility review, and release readiness remain open gates. Do not treat this starter as release-ready until those gates pass.
+Use Flutter stable compatible with the SDK constraint in `pubspec.yaml` (Dart `>=3.12.0 <4.0.0`). Android builds require the Android SDK/toolchain. iOS builds require macOS and Xcode.
 
-## Toolchain and local checks
-
-Use a current stable Flutter release compatible with Dart 3.12 or newer. Android builds require the Android toolchain; iOS builds require macOS and Xcode.
-
-From the repository root, run these commands in order:
+From the repository root:
 
 1. `flutter pub get`
 2. `flutter gen-l10n`
-3. `dart format --output=none --set-exit-if-changed lib test`
+3. `dart format --output=none --set-exit-if-changed .`
 4. `flutter analyze --fatal-infos`
 5. `flutter test --reporter expanded`
 
-Localization output is generated into `lib/l10n/generated` and intentionally not committed.
+For a local platform build:
+- Android debug: `flutter build apk --debug`
+- iOS simulator: `flutter build ios --simulator --no-codesign` (macOS only)
+
+Generated localization output is produced under `lib/l10n/generated` and intentionally not committed.
 
 ## Architecture
 
@@ -40,15 +40,22 @@ Localization output is generated into `lib/l10n/generated` and intentionally not
 - `lib/features`: screen-level composition.
 - `lib/l10n/arb`: source translations for English and Arabic.
 - `docs/project`: requirements, architecture decisions, design system, stages, and handoffs.
+- `docs/release/RELEASE_CHECKLIST.md`: device verification and release gates.
+
+## Localization and design
+
+Use the localization resources rather than hardcoding visible copy. Keep layout direction derived from the active locale; test Arabic and English, both appearance themes, enlarged text, and back navigation. Use the shared tokens and controls instead of defining ad hoc visual values per screen. See [the design system](docs/project/DESIGN_SYSTEM.md).
+
+## Quality
+
+A control must perform its stated action or be explicitly disabled. Do not add secrets or credentials to source control, do not use `print()` for logging, and do not claim a build/test passed without recorded output.
+
+CI runs for changes to Dart source/tests, dependencies, localizations, assets, platform projects, and workflow/tooling files. Documentation-only changes do not launch native platform builds.
 
 ## Scope
 
 Android and iOS only. Web and desktop are out of scope. Backend integrations, authentication providers, analytics, AI SDKs, payments, and product-specific business features are intentionally deferred.
 
-## Quality and security policy
-
-A control must perform its stated action or be explicitly disabled. No secrets or credentials belong in source control. Do not add `print()` logging, unnecessary dependencies, or claims of successful builds/tests without recorded output.
-
 ## License
 
-The project source code is licensed under the MIT License (see `LICENSE`). Bundled IBM Plex Sans Arabic font files are separately licensed under SIL Open Font License 1.1; see `assets/fonts/ibm_plex_sans_arabic/OFL.txt`.
+Project source code is licensed under the MIT License (see `LICENSE`). Bundled IBM Plex Sans Arabic font files are separately licensed under SIL Open Font License 1.1; see `assets/fonts/ibm_plex_sans_arabic/OFL.txt` and the accompanying notice.

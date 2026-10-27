@@ -44,15 +44,15 @@ Each stage is completed and recorded before dependent work begins. A handoff sta
 ## Stage 6 — Developer experience and release readiness
 
 **Owner:** Developer Experience & Release  
-**Status:** **In Progress**.  
+**Status:** **In Progress** — CI path filters, contributor guidance, setup instructions, license confirmation, and release gates are being finalized.  
 **Goal:** make setup and extension repeatable and remove avoidable CI overhead while preserving required code checks.  
 **Deliverables:**
-- Correct CI path filters so documentation-only commits do not launch native builds; keep workflow/config, Dart source/tests, pubspec, and native platform changes covered.
-- Verify README setup/extension steps against the actual workflow and SDK; add concise contribution guidance and a release checklist.
-- Decide and document the repository license explicitly; do not imply reuse permissions before the license decision.
-- Record mandatory manual device checks: TalkBack, VoiceOver, real-device font shaping/fallback, system theme/locale changes, large text/responsive layouts, and rendered contrast states.
-- Keep signed production release/store checks separate from the existing debug APK and unsigned simulator build.
-**Exit gate:** CI path filters are correct and tested; setup instructions match the implemented project; license status is explicit; device tests and release requirements are documented with owners/evidence; release remains blocked until required device evidence is recorded.
+- CI path filters that skip documentation-only changes but retain coverage for Dart source/tests, dependencies, localizations, assets, tooling, workflow, and Android/iOS platform changes.
+- README setup/extension instructions that match CI commands.
+- Concise contributor guidance.
+- Explicit license boundaries (project code MIT; bundled font assets OFL with their notice).
+- A release checklist with physical-device accessibility, font rendering, large text/layout, system appearance/locale persistence, and signed production builds.
+**Exit gate:** CI path filters work as intended and code-relevant workflow changes pass CI; setup instructions match implemented commands; license and third-party font terms remain explicit; manual device checks remain tracked and release stays blocked until actual evidence is recorded.
 
 ## Handoff states
 

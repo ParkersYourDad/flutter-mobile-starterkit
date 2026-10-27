@@ -3,7 +3,35 @@ name: Flutter CI
 on:
   push:
     branches: [main]
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'integration_test/**'
+      - 'assets/**'
+      - 'tool/**'
+      - 'scripts/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'analysis_options.yaml'
+      - 'l10n.yaml'
+      - 'android/**'
+      - 'ios/**'
+      - '.github/workflows/**'
   pull_request:
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'integration_test/**'
+      - 'assets/**'
+      - 'tool/**'
+      - 'scripts/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'analysis_options.yaml'
+      - 'l10n.yaml'
+      - 'android/**'
+      - 'ios/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 permissions:
