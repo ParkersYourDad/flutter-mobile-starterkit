@@ -6,8 +6,8 @@ import 'app_settings_repository.dart';
 
 final appSettingsControllerProvider =
     AsyncNotifierProvider<AppSettingsController, AppSettings>(
-  AppSettingsController.new,
-);
+      AppSettingsController.new,
+    );
 
 class AppSettingsController extends AsyncNotifier<AppSettings> {
   @override

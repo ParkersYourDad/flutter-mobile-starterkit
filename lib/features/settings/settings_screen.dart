@@ -30,10 +30,7 @@ class SettingsScreen extends ConsumerWidget {
               AppTokens.space48,
             ),
             children: [
-              Text(
-                l10n.settingsDescription,
-                style: theme.textTheme.bodyMedium,
-              ),
+              Text(l10n.settingsDescription, style: theme.textTheme.bodyMedium),
               if (!settings.persistenceAvailable) ...[
                 const SizedBox(height: AppTokens.space24),
                 AppSurface(
@@ -108,14 +105,8 @@ class SettingsScreen extends ConsumerWidget {
                     value: 'system',
                     label: Text(l10n.followSystem),
                   ),
-                  ButtonSegment(
-                    value: 'en',
-                    label: Text(l10n.english),
-                  ),
-                  ButtonSegment(
-                    value: 'ar',
-                    label: Text(l10n.arabic),
-                  ),
+                  ButtonSegment(value: 'en', label: Text(l10n.english)),
+                  ButtonSegment(value: 'ar', label: Text(l10n.arabic)),
                 ],
                 selected: {settings.locale?.languageCode ?? 'system'},
                 onSelectionChanged: (selection) {
@@ -149,9 +140,9 @@ class SettingsScreen extends ConsumerWidget {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.preferenceSaveFailed)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.preferenceSaveFailed)));
     }
   }
 
@@ -167,9 +158,9 @@ class SettingsScreen extends ConsumerWidget {
       if (!context.mounted) {
         return;
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.preferenceSaveFailed)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.preferenceSaveFailed)));
     }
   }
 }

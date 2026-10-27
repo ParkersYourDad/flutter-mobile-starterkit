@@ -24,8 +24,7 @@ class AppSettings {
     return AppSettings(
       themeMode: themeMode ?? this.themeMode,
       locale: clearLocale ? null : (locale ?? this.locale),
-      persistenceAvailable:
-          persistenceAvailable ?? this.persistenceAvailable,
+      persistenceAvailable: persistenceAvailable ?? this.persistenceAvailable,
     );
   }
 }

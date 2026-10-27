@@ -48,7 +48,9 @@ void main() {
     expect(find.text('Language'), findsOneWidget);
   });
 
-  testWidgets('Arabic locale sets right-to-left directionality', (tester) async {
+  testWidgets('Arabic locale sets right-to-left directionality', (
+    tester,
+  ) async {
     final repository = FakeAppSettingsRepository(
       const AppSettings(locale: Locale('ar')),
     );
@@ -65,9 +67,6 @@ void main() {
 
     final arabicHeading = find.text('بداية أكثر هدوءًا');
     expect(arabicHeading, findsOneWidget);
-    expect(
-      Directionality.of(tester.element(arabicHeading)),
-      TextDirection.rtl,
-    );
+    expect(Directionality.of(tester.element(arabicHeading)), TextDirection.rtl);
   });
 }

@@ -8,10 +8,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   final router = GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const HomeScreen(),
-      ),
+      GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
       GoRoute(
         path: '/settings',
         builder: (context, state) => const SettingsScreen(),

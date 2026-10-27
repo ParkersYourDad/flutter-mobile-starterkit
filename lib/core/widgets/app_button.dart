@@ -27,17 +27,17 @@ class AppButton extends StatelessWidget {
 
     final Widget button = switch (variant) {
       AppButtonVariant.primary => FilledButton(
-          onPressed: effectiveOnPressed,
-          child: child,
-        ),
+        onPressed: effectiveOnPressed,
+        child: child,
+      ),
       AppButtonVariant.secondary => OutlinedButton(
-          onPressed: effectiveOnPressed,
-          child: child,
-        ),
+        onPressed: effectiveOnPressed,
+        child: child,
+      ),
       AppButtonVariant.tertiary => TextButton(
-          onPressed: effectiveOnPressed,
-          child: child,
-        ),
+        onPressed: effectiveOnPressed,
+        child: child,
+      ),
     };
 
     if (width == null) {

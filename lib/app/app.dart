@@ -12,7 +12,8 @@ class StarterApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(appSettingsControllerProvider).valueOrNull ??
+    final settings =
+        ref.watch(appSettingsControllerProvider).valueOrNull ??
         const AppSettings();
 
     return MaterialApp.router(

@@ -4,10 +4,7 @@ import '../../app/theme/app_tokens.dart';
 import 'app_button.dart';
 
 class AppLoadingState extends StatelessWidget {
-  const AppLoadingState({
-    required this.semanticLabel,
-    super.key,
-  });
+  const AppLoadingState({required this.semanticLabel, super.key});
 
   final String semanticLabel;
 

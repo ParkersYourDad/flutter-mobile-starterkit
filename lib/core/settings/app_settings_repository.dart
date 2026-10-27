@@ -11,8 +11,7 @@ abstract interface class SettingsStorage {
 }
 
 class SharedPreferencesSettingsStorage implements SettingsStorage {
-  SharedPreferencesSettingsStorage()
-      : _preferences = SharedPreferencesAsync();
+  SharedPreferencesSettingsStorage() : _preferences = SharedPreferencesAsync();
 
   final SharedPreferencesAsync _preferences;
 

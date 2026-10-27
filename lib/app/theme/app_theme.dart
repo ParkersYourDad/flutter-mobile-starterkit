@@ -11,11 +11,13 @@ abstract final class AppTheme {
     final canvas = isDark ? AppTokens.darkCanvas : AppTokens.lightCanvas;
     final surface = isDark ? AppTokens.darkSurface : AppTokens.lightSurface;
     final primary = isDark ? AppTokens.darkPrimary : AppTokens.lightPrimary;
-    final secondary =
-        isDark ? AppTokens.darkSecondary : AppTokens.lightSecondary;
+    final secondary = isDark
+        ? AppTokens.darkSecondary
+        : AppTokens.lightSecondary;
     final text = isDark ? AppTokens.darkText : AppTokens.lightText;
-    final mutedText =
-        isDark ? AppTokens.darkMutedText : AppTokens.lightMutedText;
+    final mutedText = isDark
+        ? AppTokens.darkMutedText
+        : AppTokens.lightMutedText;
     final divider = isDark ? AppTokens.darkDivider : AppTokens.lightDivider;
     final outline = isDark ? AppTokens.darkOutline : AppTokens.lightOutline;
     final error = isDark ? AppTokens.darkError : AppTokens.lightError;
@@ -93,11 +95,7 @@ abstract final class AppTheme {
           fontWeight: FontWeight.w600,
         ),
       ),
-      dividerTheme: DividerThemeData(
-        color: divider,
-        thickness: 1,
-        space: 1,
-      ),
+      dividerTheme: DividerThemeData(color: divider, thickness: 1, space: 1),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           backgroundColor: primary,
