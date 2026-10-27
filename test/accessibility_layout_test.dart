@@ -27,33 +27,36 @@ class _MemorySettingsRepository implements AppSettingsRepository {
 }
 
 void main() {
-  testWidgets('Arabic preferences remain usable on a compact phone with enlarged text', (tester) async {
-    tester.view.physicalSize = const Size(320, 720);
-    tester.view.devicePixelRatio = 1;
-    tester.platformDispatcher.textScaleFactorTestValue = 2;
-    addTearDown(tester.view.resetPhysicalSize);
-    addTearDown(tester.view.resetDevicePixelRatio);
-    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+  testWidgets(
+    'Arabic preferences remain usable on a compact phone with enlarged text',
+    (tester) async {
+      tester.view.physicalSize = const Size(320, 720);
+      tester.view.devicePixelRatio = 1;
+      tester.platformDispatcher.textScaleFactorTestValue = 2;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
 
-    final repository = _MemorySettingsRepository(
-      const AppSettings(locale: Locale('ar')),
-    );
+      final repository = _MemorySettingsRepository(
+        const AppSettings(locale: Locale('ar')),
+      );
 
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          appSettingsRepositoryProvider.overrideWithValue(repository),
-        ],
-        child: const StarterApp(),
-      ),
-    );
-    await tester.pumpAndSettle();
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            appSettingsRepositoryProvider.overrideWithValue(repository),
+          ],
+          child: const StarterApp(),
+        ),
+      );
+      await tester.pumpAndSettle();
 
-    await tester.tap(find.byTooltip('الإعدادات'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('الإعدادات'));
+      await tester.pumpAndSettle();
 
-    expect(find.text('التفضيلات'), findsOneWidget);
-    expect(find.byType(BackButtonIcon), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
+      expect(find.text('التفضيلات'), findsOneWidget);
+      expect(find.byType(BackButtonIcon), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 }
