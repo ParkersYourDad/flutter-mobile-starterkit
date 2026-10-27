@@ -18,7 +18,9 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: brightness == Brightness.light ? AppTheme.light : AppTheme.dark,
+          theme: brightness == Brightness.light
+              ? AppTheme.light
+              : AppTheme.dark,
           home: const _SharedComponentsGallery(),
         ),
       );
@@ -60,7 +62,9 @@ class _SharedComponentsGallery extends StatelessWidget {
                 children: [
                   Text('A quiet surface'),
                   SizedBox(height: 8),
-                  Text('Reusable UI with consistent spacing and subtle borders.'),
+                  Text(
+                    'Reusable UI with consistent spacing and subtle borders.',
+                  ),
                 ],
               ),
             ),

@@ -69,6 +69,9 @@ void main() {
     );
 
     final semantics = tester.getSemantics(find.text('Settings'));
-    expect(semantics, matchesSemantics(isButton: true, isSelected: true, label: 'Settings'));
+    expect(
+      semantics,
+      matchesSemantics(isButton: true, isSelected: true, label: 'Settings'),
+    );
   });
 }
