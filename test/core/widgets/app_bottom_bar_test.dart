@@ -1,3 +1,5 @@
+import 'dart:ui' show SemanticsAction, Tristate;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobile_starterkit/app/theme/app_theme.dart';
 import 'package:flutter_mobile_starterkit/core/widgets/app_bottom_bar.dart';
@@ -72,8 +74,8 @@ void main() {
     final data = semantics.getSemanticsData();
 
     expect(data.label, 'Settings');
-    expect(data.hasFlag(SemanticsFlag.isButton), isTrue);
-    expect(data.hasFlag(SemanticsFlag.isSelected), isTrue);
+    expect(data.flagsCollection.isButton, isTrue);
+    expect(data.flagsCollection.isSelected, Tristate.isTrue);
     expect(data.hasAction(SemanticsAction.tap), isTrue);
   });
 }
