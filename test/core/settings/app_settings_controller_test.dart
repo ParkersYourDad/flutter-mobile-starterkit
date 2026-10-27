@@ -7,13 +7,11 @@ import 'package:flutter_test/flutter_test.dart';
 
 class _StubSettingsRepository implements AppSettingsRepository {
   _StubSettingsRepository({
-    this.initial = const AppSettings(),
     this.loadError,
     this.themeSaveError,
     this.localeSaveError,
   });
 
-  final AppSettings initial;
   final Object? loadError;
   final Object? themeSaveError;
   final Object? localeSaveError;
@@ -21,7 +19,7 @@ class _StubSettingsRepository implements AppSettingsRepository {
   @override
   Future<AppSettings> load() async {
     if (loadError != null) throw loadError!;
-    return initial;
+    return const AppSettings();
   }
 
   @override
