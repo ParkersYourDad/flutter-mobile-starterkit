@@ -34,3 +34,43 @@ jobs:
         run: flutter analyze --fatal-infos
       - name: Test
         run: flutter test --reporter expanded
+
+  android-build:
+    name: Android debug APK
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Flutter stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Resolve dependencies
+        run: flutter pub get
+      - name: Generate localizations
+        run: flutter gen-l10n
+      - name: Build debug APK
+        run: flutter build apk --debug
+
+  ios-build:
+    name: iOS simulator build
+    needs: quality
+    runs-on: macos-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Flutter stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Resolve dependencies
+        run: flutter pub get
+      - name: Generate localizations
+        run: flutter gen-l10n
+      - name: Build iOS simulator app
+        run: flutter build ios --simulator --no-codesign
