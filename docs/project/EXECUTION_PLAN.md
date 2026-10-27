@@ -2,82 +2,75 @@
 
 ## Operating model
 
-Work is divided into specialist workstreams. In this session these are role-based workstreams, not independent background agents. Parallelize only independent research or file preparation; merge all decisions through one accountable implementation owner.
+Work is divided into specialist workstreams. In this session these are role-based workstreams, not independent background agents. Parallelize only independent discovery/preparation; integrate all changes through one accountable implementation owner.
 
-Every stage must provide:
-- Defined scope and explicit exclusions.
-- Deliverables linked to requirements.
-- Acceptance criteria and verification evidence.
-- Known risks, unresolved questions, and blockers.
-- A handoff note for the next stage.
-
-Do not mark a stage complete based only on written plans. Code stages require real code; quality stages require executed checks and recorded outcomes.
+Each stage is completed and recorded before the next stage begins. Every handoff states deliverables, acceptance evidence, risks, and the receiving stage. A written plan is not implementation evidence.
 
 ## Stage 1 — Product requirements
 
 **Owner:** Product & Requirements  
-**Goal:** establish product scope, requirements, priorities, acceptance criteria, and non-goals.  
+**Goal:** establish scope, priorities, acceptance criteria, and non-goals.  
 **Deliverables:** `docs/project/PRODUCT_REQUIREMENTS.md` and this plan.  
-**Exit gate:** each core requirement has an ID, priority, acceptance criteria, and verification approach; scope is consistent with mobile-only Flutter starter kit.  
-**Status:** documented in repository; implementation not yet started.
+**Exit gate:** every core requirement has an ID, priority, acceptance criteria, and a verification approach.  
+**Status:** **Accepted** — requirements are present in the repository with explicit verification methods. This accepts the specification, not product implementation.
 
-## Stage 2 — Architecture and foundation
+## Stage 2 — Architecture and foundation decisions
 
 **Owner:** Architecture & Engineering  
-**Goal:** choose a small, coherent architecture and validate current package/tool compatibility.  
-**Deliverables:** `docs/project/ARCHITECTURE_DECISIONS.md`, directory structure, dependency rationale, error/state/navigation rules.  
-**Exit gate:** decisions are documented; no unresolved high-risk architecture decision; dependency resolution and baseline Flutter checks pass in a real Flutter environment.  
-**Blocker:** Flutter/Dart execution environment and repository build have not yet been verified in this session.
+**Goal:** settle target platforms, state management, routing, persistence, localization strategy, dependency baseline, and quality policy.  
+**Deliverables:** `docs/project/ARCHITECTURE_DECISIONS.md` and `docs/project/HANDOFF_PHASE_2.md`.  
+**Exit gate:** decisions are explicit, direct dependencies have a purpose, version constraints are checked against current published package metadata, and build/test verification is allocated to implementation CI.  
+**Status:** **Accepted** — official package metadata and Flutter release history checked 2026-10-27. Dependency resolution/build/analyze/tests remain unverified and are implementation acceptance gates, not claims of phase-2 success.
 
-## Stage 3 — Design system and UX
+## Stage 3 — Design system and UX specification
 
 **Owner:** Design Systems & UX  
-**Goal:** define tokens, typography, themes, components, motion, localization, directionality, and accessibility behavior.  
-**Deliverables:** `docs/project/DESIGN_SYSTEM.md` and component acceptance matrix.  
-**Exit gate:** design rules are implementable and consistent across light/dark, Arabic/English, RTL/LTR, font scaling, and reduced-motion expectations.
+**Goal:** freeze implementable design tokens and component contracts for the foundation.  
+**Deliverables:** `docs/project/DESIGN_SYSTEM.md`, updated with an explicit component/token acceptance matrix and handoff record.  
+**Exit gate:** token values and semantics are unambiguous; theme, localization, RTL/LTR, responsive behavior, motion, accessibility, and golden-test scope map to testable checks.  
+**Status:** **Next** — move here only after the Stage 2 handoff is recorded.
 
 ## Stage 4 — Flutter implementation
 
 **Owner:** Flutter Engineering  
-**Goal:** implement foundation and showcase screens using the approved architecture and design system.  
-**Deliverables:** compilable Flutter code, localization resources, reusable UI components, functional settings persistence, navigation, and tests.  
-**Exit gate:** format, analyze, unit/widget tests, and supported platform builds pass; no fake controls or placeholder integrations.
+**Goal:** implement the approved architecture and design specification as working Flutter source.  
+**Deliverables:** mobile Flutter project, centralized tokens/theme, reusable components, settings persistence, navigation, localization, tests, and CI.  
+**Exit gate:** dependency resolution, format, analysis, and tests pass on the selected SDK; platform build checks are run where toolchains are available. No fake controls.
 
 ## Stage 5 — Quality, security, accessibility, performance
 
 **Owner:** Quality Engineering  
-**Goal:** verify functional behavior, accessibility, localization, storage, navigation, and baseline performance.  
-**Deliverables:** automated tests, targeted golden tests, accessibility checklist, risk findings with severity and reproduction steps.  
-**Exit gate:** no unresolved critical/high-severity defect; all required checks have recorded results; failed checks return to the responsible stage with a bounded fix list.
+**Goal:** verify functional behavior, accessibility, localization, storage, navigation, security, and baseline performance.  
+**Deliverables:** automated test evidence, targeted goldens, accessibility matrix, and bounded defect list with severity and reproduction steps.  
+**Exit gate:** no unresolved critical/high-severity defect; all required checks have evidence; failed checks return to the responsible stage with a specific fix list.
 
 ## Stage 6 — CI, documentation, release readiness
 
 **Owner:** Developer Experience & Release  
-**Goal:** make the starter kit understandable, repeatable, and safe to adopt.  
-**Deliverables:** GitHub Actions, concise setup and extension docs, contribution guidance, license decision, release checklist.  
-**Exit gate:** CI runs on pull requests; setup steps are tested; platform and licensing limits are explicit.
+**Goal:** make the starter kit understandable and repeatable to adopt.  
+**Deliverables:** GitHub Actions, tested setup/extension docs, contribution guidance, explicit license decision, release checklist.  
+**Exit gate:** CI runs on pull requests; clean-checkout setup is tested; platform and license limits are explicit.
 
 ## Handoff states
 
 `Ready → In Progress → Handoff Review → Accepted`
 
-Use `Blocked` only with a specific reason, owner, and unblocking action. The next stage cannot start implementation until the previous stage's exit gate is accepted. Independent discovery may continue if it cannot invalidate upstream decisions.
+Use `Blocked` only with a specific reason, owner, and unblocking action. Do not proceed to a dependent stage while its previous stage is incomplete. Independent research may continue if it cannot invalidate upstream decisions.
 
 ## Non-negotiable constraints
 
 - Android and iOS only; no web/desktop scope.
-- English and Arabic, automatic locale-aware LTR/RTL, Light/Dark/System.
-- Premium minimal, neutral design; no emoji icons, arbitrary colors, or unnecessary elevation/surface tint.
-- Centralized tokens and shared components; no hardcoded copy or visual values in screens.
-- Riverpod 3 Notifier/AsyncNotifier patterns; do not introduce StateProvider or StateNotifierProvider for new code.
-- Prefer simple, manual model serialization unless a concrete requirement justifies code generation.
-- No fake production behavior, secret leakage, unnecessary dependencies, analytics, AI SDKs, or monetization SDKs without an explicit product need.
-- No claims of successful tests/builds without actual output.
-- Do not delete unrelated repositories or rewrite history as part of this project.
+- English and Arabic with locale-aware RTL/LTR, and Light/Dark/System.
+- Premium minimal, neutral design; no emoji icons, arbitrary colors, unnecessary elevation, or surface tint.
+- Centralized tokens/shared components; no hardcoded user-facing copy or visual values in screens.
+- Riverpod 3 Notifier/AsyncNotifier; no new StateProvider/StateNotifierProvider.
+- Manual model serialization by default; no code generation without a demonstrated need.
+- No fake production behavior, secret leakage, unnecessary SDKs, analytics, AI, or monetization packages without product need.
+- Never claim a test/build passed without actual output.
+- No deletion of unrelated repositories or history rewrites.
 
 ## Current repository state
 
 Repository: `ParkersYourDad/flutter-mobile-starterkit`  
 Default branch: `main`  
-Initial README commit: `6f761cb6344f3f22da201766609af93a7d28cc2c`  
-No Flutter build or test has been run by this GitHub-only setup step.
+Requirements and architecture/design specifications are committed. No Flutter build/analyze/test has been run by this session yet.
