@@ -1,7 +1,7 @@
 # Architecture Decisions
 
 **Phase status:** Accepted for implementation handoff on 2026-10-27.  
-**Important distinction:** Architecture and package metadata have been checked; no Flutter build, dependency resolution, analysis, or test has been run by this session. Those are mandatory gates in the implementation phase.
+**Runtime evidence update (2026-10-27):** GitHub Actions run [#40](https://github.com/ParkersYourDad/flutter-mobile-starterkit/actions/runs/40430508949) completed successfully on code commit `9b41c8c0aee338f71618d591a5bba9c0594d51d5`. It resolved dependencies, generated localizations, passed formatting, analysis and tests, and built the Android debug APK plus iOS simulator app. The logged toolchain was Flutter 3.47.8 / Dart 3.13.7. No physical-device run or App Store/Play Store release build is claimed.
 
 ## AD-001 — Supported platforms
 **Decision:** Android and iOS only.  
@@ -9,8 +9,8 @@
 **Guardrail:** CI and documentation must not claim web/desktop support.
 
 ## AD-002 — Toolchain baseline
-**Decision:** Use Flutter stable 3.47.7 as the implementation baseline and Dart SDK constraint `^3.12.0`; the known target development environment is Dart 3.13.5.  
-**Evidence:** Flutter's official changelog lists the 3.47.7 stable hotfix; the selected package versions' published minimum Dart constraints are compatible with Dart 3.12+.  
+**Decision:** The last verified CI baseline is Flutter stable 3.47.8 with Dart 3.13.7; the package SDK constraint is `>=3.12.0 <4.0.0`. The CI workflow currently tracks the stable channel, so the exact installed release is recorded in each run.  
+**Evidence:** The successful CI job's `flutter --version` output reports Flutter 3.47.8 and Dart 3.13.7. `flutter pub get` succeeded with the selected package constraints.  
 **Guardrail:** pin the same Flutter SDK in CI. Update the pin only through a deliberate toolchain change accompanied by dependency resolution, analysis, and tests. Before release, confirm the stable channel has not moved and evaluate an available newer stable hotfix.
 
 ## AD-003 — State management
