@@ -81,37 +81,36 @@ void main() {
     expect(Directionality.of(tester.element(arabicHeading)), TextDirection.rtl);
   });
 
-  testWidgets(
-    'compact Arabic preferences fit and expose RTL back navigation',
-    (tester) async {
-      tester.view.physicalSize = const Size(320, 720);
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.resetPhysicalSize);
-      addTearDown(tester.view.resetDevicePixelRatio);
+  testWidgets('compact Arabic preferences fit and expose RTL back navigation', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(320, 720);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
 
-      final repository = FakeAppSettingsRepository(
-        const AppSettings(locale: Locale('ar')),
-      );
+    final repository = FakeAppSettingsRepository(
+      const AppSettings(locale: Locale('ar')),
+    );
 
-      await tester.pumpWidget(
-        ProviderScope(
-          overrides: [
-            appSettingsRepositoryProvider.overrideWithValue(repository),
-          ],
-          child: const StarterApp(),
-        ),
-      );
-      await tester.pumpAndSettle();
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          appSettingsRepositoryProvider.overrideWithValue(repository),
+        ],
+        child: const StarterApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
 
-      await tester.tap(find.byTooltip('الإعدادات'));
-      await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('الإعدادات'));
+    await tester.pumpAndSettle();
 
-      expect(find.text('التفضيلات'), findsOneWidget);
-      expect(find.byType(BackButtonIcon), findsOneWidget);
-      expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
-      expect(tester.takeException(), isNull);
-    },
-  );
+    expect(find.text('التفضيلات'), findsOneWidget);
+    expect(find.byType(BackButtonIcon), findsOneWidget);
+    expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 
   test(
     'settings controller waits for initial load before persisting a change',
