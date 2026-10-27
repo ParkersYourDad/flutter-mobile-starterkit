@@ -69,8 +69,8 @@ void main() {
     });
 
     test('rejects unsupported locale writes', () async {
-      expect(
-        () => repository.saveLocale(const Locale('fr')),
+      await expectLater(
+        repository.saveLocale(const Locale('fr')),
         throwsArgumentError,
       );
     });
