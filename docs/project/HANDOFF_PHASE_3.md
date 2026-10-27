@@ -1,23 +1,43 @@
 # Handoff — Phase 3: Design System and UX
 
-**Status:** Initial shared UI components and theme implementation committed; behavioral and visual validation is underway.  
-**Receiver:** Flutter Engineering and Quality Engineering.
+**Status: ACCEPTED for implementation handoff.**  
+**Date:** 2026-10-27  
+**Receiver:** Quality Engineering (Stage 5).  
+**Evidence:** [Design System](DESIGN_SYSTEM.md), theme/tokens at `lib/app/theme/`, shared widgets at `lib/core/widgets/`, and Light/Dark goldens at `test/goldens/`.
 
-## Delivered implementation
-- Central neutral tokens for color, typography, spacing, radii, control height, and maximum page width.
-- Explicit light and dark theme palettes with neutral surfaces, subtle dividers, no decorative elevation, and transparent surface tint.
-- Shared button variants with loading/disabled behavior.
-- Shared surface and section header.
-- Shared text input with validation/error, focus, disabled, read-only, keyboard, and autofill options.
-- Shared loading, empty, error, and skeleton states.
-- Optional semantic-aware bottom navigation component that respects the framework's directionality.
-- English and Arabic source translations and theme/locale controls.
+## Delivered
 
-## Validation
-The initial format, analyzer, and test workflow passed for commit `4a72e51c1d4dc0e6252b36247070067f033e2281`. Additional component and golden tests were added after that commit and require their own green run. Native platform builds for the same earlier commit were still running at handoff time; their final result must be checked on GitHub Actions.
+- Central neutral Light/Dark tokens for canvas, surfaces, primary/secondary roles, text, dividers, focus outline, and semantic errors.
+- Theme policy: transparent surface tint, no decorative elevation, consistent typography and controls.
+- Canonical spacing/radius/width/control-height tokens.
+- Bundled IBM Plex Sans Arabic Regular/SemiBold, with OFL license and notice retained in the repository.
+- Shared AppButton, AppSurface/SectionHeader, AppTextField, loading/empty/error/skeleton components, and optional AppBottomBar.
+- Arabic/English localization foundation, theme/locale controls, and RTL-aware routing/back behavior in the current application source.
+- Exact token values, calculated contrast ratios, component contracts, and verification matrix documented in `DESIGN_SYSTEM.md`.
 
-## Remaining design tasks
-- Inspect golden output in both themes after CI generates the image baselines.
-- Verify contrast in rendered outputs and test increased text scaling / narrow devices beyond source-level assumptions.
-- Confirm IBM Plex Sans Arabic licensing and asset delivery before bundling it; it is not bundled yet.
-- Do not call visual quality fully accepted until goldens and targeted review are completed.
+## Verification evidence
+
+The latest observed CI quality job on code commit `9aa3af4b771fb14930d7d25bcf26bbd9ff3f59be` reported success for:
+- Flutter dependency resolution
+- Localization generation
+- Dart formatting validation
+- Static analysis with fatal infos
+- Automated unit/widget/golden tests
+
+Workflow: https://github.com/ParkersYourDad/flutter-mobile-starterkit/actions/runs/40430675763
+
+This evidence covers the quality job only. At handoff time the Android debug APK and iOS simulator build jobs in that run were still running; their final outcomes must be checked separately in Stage 4 implementation acceptance.
+
+## Explicitly not claimed complete
+
+- Full TalkBack/VoiceOver device pass.
+- Font shaping/fallback verification on physical Android and iOS devices.
+- Large text scale and 480/560/640 logical-pixel layout coverage.
+- Full contrast review for all interactive/disabled/error states in rendered UI.
+- Android/iOS build completion for the latest commit.
+
+These are tracked for the quality/release stages, not silently waived.
+
+## Acceptance decision
+
+The design system stage is closed: its tokens and component contracts are implementable, central components and theme code are present, and the existing light/dark golden suite passed in the recorded quality job. Stage 4 remains responsible for final platform build acceptance; Stage 5 owns broader accessibility/device verification.
