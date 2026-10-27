@@ -44,15 +44,9 @@ Each stage is completed and recorded before dependent work begins. A handoff sta
 ## Stage 6 — Developer experience and release readiness
 
 **Owner:** Developer Experience & Release  
-**Status:** **In Progress** — CI path filters, contributor guidance, setup instructions, license confirmation, and release gates are being finalized.  
-**Goal:** make setup and extension repeatable and remove avoidable CI overhead while preserving required code checks.  
-**Deliverables:**
-- CI path filters that skip documentation-only changes but retain coverage for Dart source/tests, dependencies, localizations, assets, tooling, workflow, and Android/iOS platform changes.
-- README setup/extension instructions that match CI commands.
-- Concise contributor guidance.
-- Explicit license boundaries (project code MIT; bundled font assets OFL with their notice).
-- A release checklist with physical-device accessibility, font rendering, large text/layout, system appearance/locale persistence, and signed production builds.
-**Exit gate:** CI path filters work as intended and code-relevant workflow changes pass CI; setup instructions match implemented commands; license and third-party font terms remain explicit; manual device checks remain tracked and release stays blocked until actual evidence is recorded.
+**Deliverables:** README setup and architecture guidance, `CONTRIBUTING.md`, `docs/release/RELEASE_CHECKLIST.md`, code-relevant CI path filters, and `docs/project/HANDOFF_PHASE_6.md`.  
+**Exit gate:** code-relevant workflow checks pass; setup instructions match implemented commands; project and font licenses are clear; docs-only commits do not trigger native CI builds; device/release checks remain recorded with honest status.  
+**Status:** **Accepted for repository developer-experience delivery** — [CI run #55](https://github.com/ParkersYourDad/flutter-mobile-starterkit/actions/runs/40433112338) passed dependency resolution, localization generation, format, analysis, automated tests, Android debug APK, and iOS simulator build. Final docs-only commit is used to validate that the path filters suppress workflow runs for documentation changes. Release certification remains **Blocked** until physical-device accessibility/rendering and signed production-release checks are completed.
 
 ## Handoff states
 
@@ -76,4 +70,4 @@ Use `Blocked` only with a specific reason, owner, and unblocking action. Do not 
 
 Repository: `ParkersYourDad/flutter-mobile-starterkit`  
 Default branch: `main`  
-Stages 1–5 are accepted within their stated evidence and limits. Stage 6 is active. Release readiness remains blocked until the manual/device release gates are backed by evidence.
+Stages 1–6 are accepted within their stated evidence and limits. Repository setup, code-relevant CI, contributor guidance, and release documentation are in place. **Release readiness remains blocked** until the manual/device and signed production release gates are backed by evidence.
