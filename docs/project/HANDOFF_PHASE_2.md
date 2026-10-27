@@ -1,26 +1,28 @@
 # Handoff — Phase 2: Architecture Decisions
 
-**Status:** Architecture decisions committed to GitHub.  
-**Receiver:** Design System & UX, then Flutter Engineering.  
-**Evidence:** `docs/project/ARCHITECTURE_DECISIONS.md`, `docs/project/DESIGN_SYSTEM.md`.
+**Status: ACCEPTED for implementation handoff.**  
+**Date:** 2026-10-27  
+**Receiver:** Design Systems & UX (Stage 3).  
+**Evidence:** [Architecture Decisions](ARCHITECTURE_DECISIONS.md), [Execution Plan](EXECUTION_PLAN.md).
 
-## Delivered
-- Mobile-only target decision.
-- Riverpod 3 Notifier/AsyncNotifier approach.
-- go_router decision with conditional use of StatefulShellRoute only if tabs are in scope.
-- SharedPreferences limited to non-sensitive preferences.
-- Manual model serialization as default; code generation deferred absent concrete need.
-- Localization, error handling, dependency policy, and CI quality gates.
-- Design tokens, typography, neutral theme rules, component contracts, accessibility and golden-test scope.
+## Delivered and accepted
+- Android/iOS-only product target.
+- Flutter stable baseline decision: 3.47.7, Dart SDK constraint `^3.12.0`, known target Dart 3.13.5.
+- Riverpod 3.4.3, go_router 18.1.1, and shared_preferences 2.5.6 checked against current pub.dev package metadata.
+- Clear rules for state management, navigation, safe settings persistence, localization, component architecture, errors, dependency policy, and CI acceptance.
 
-## Acceptance gate
-These decisions are adequate to start implementation planning and design-system implementation. Package versions and APIs must still be verified against the selected Flutter stable SDK through dependency resolution, analysis, and tests.
+## Validation performed
+- Checked official Flutter changelog/release archive.
+- Checked current package release metadata and minimum Dart SDK constraints on pub.dev.
+- Confirmed the chosen package metadata constraints are compatible with Dart 3.13.5.
 
-## Blockers and risks
-- Flutter/Dart toolchain has not been executed in this session.
-- No actual app source, tests, or CI workflow has been committed yet.
-- Font licensing and bundled font files remain to be verified.
-- License for the repository remains undecided.
+## Not claimed
+- No `flutter pub get`, format, analysis, test, or platform build has run in this session.
+- Package resolution in this specific project is not yet proven.
+- The design system is specified but not implemented or visually validated.
 
-## Handoff rule
-Do not represent the architecture or design system as implemented merely because these specifications exist. Implementation and automated verification remain mandatory.
+## Implementation-phase gates
+The Flutter implementation stage must resolve the dependencies and run formatting, static analysis, and tests in CI. Any incompatibility must be fixed with actual tool output and recorded back into architecture decisions.
+
+## Acceptance decision
+Architecture decisions are sufficiently explicit and current-package metadata is checked. Stage 2 is closed as a **decision/specification phase**; implementation verification remains a separate gate and must not be reported as passed prematurely.
