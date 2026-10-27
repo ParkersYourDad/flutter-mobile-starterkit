@@ -8,10 +8,13 @@ void main() {
     expect(AppTheme.dark.fontFamily, 'IBMPlexSansArabic');
   });
 
-  test('themes keep surfaces neutral and suppress decorative tint/elevation', () {
-    expect(AppTheme.light.colorScheme.surfaceTint, Colors.transparent);
-    expect(AppTheme.dark.colorScheme.surfaceTint, Colors.transparent);
-    expect(AppTheme.light.appBarTheme.elevation, 0);
-    expect(AppTheme.dark.appBarTheme.elevation, 0);
-  });
+  test(
+    'themes keep surfaces neutral and suppress decorative tint/elevation',
+    () {
+      expect(AppTheme.light.colorScheme.surfaceTint, Colors.transparent);
+      expect(AppTheme.dark.colorScheme.surfaceTint, Colors.transparent);
+      expect(AppTheme.light.appBarTheme.elevation, 0);
+      expect(AppTheme.dark.appBarTheme.elevation, 0);
+    },
+  );
 }

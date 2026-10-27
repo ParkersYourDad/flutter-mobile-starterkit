@@ -6,7 +6,6 @@
 build/
 .flutter-plugins
 .flutter-plugins-dependencies
-.metadata
 
 # IDEs
 .idea/
@@ -19,6 +18,20 @@ lib/l10n/generated/
 # Test outputs
 coverage/
 *.info
+
+# Native build output and machine-local configuration
+android/local.properties
+android/.gradle/
+android/app/build/
+android/build/
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
+ios/Flutter/.last_build_id
+ios/Runner/GeneratedPluginRegistrant.*
+ios/build/
+**/DerivedData/
+*.xcuserstate
 
 # Platform signing and local configuration
 android/key.properties

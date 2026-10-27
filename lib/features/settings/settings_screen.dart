@@ -16,6 +16,7 @@ class SettingsScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final settingsValue = ref.watch(appSettingsControllerProvider);
     final settings = settingsValue.value ?? const AppSettings();
+    final settingsReady = settingsValue.hasValue;
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settingsTitle)),
@@ -68,29 +69,68 @@ class SettingsScreen extends ConsumerWidget {
                 description: l10n.appearanceDescription,
               ),
               const SizedBox(height: AppTokens.space16),
-              SegmentedButton<ThemeMode>(
-                segments: [
-                  ButtonSegment(
-                    value: ThemeMode.system,
-                    label: Text(l10n.systemMode),
-                    icon: const Icon(Icons.brightness_auto_outlined),
-                  ),
-                  ButtonSegment(
-                    value: ThemeMode.light,
-                    label: Text(l10n.lightMode),
-                    icon: const Icon(Icons.light_mode_outlined),
-                  ),
-                  ButtonSegment(
-                    value: ThemeMode.dark,
-                    label: Text(l10n.darkMode),
-                    icon: const Icon(Icons.dark_mode_outlined),
-                  ),
-                ],
-                selected: {settings.themeMode},
-                onSelectionChanged: (selection) {
-                  if (selection.isNotEmpty) {
-                    _saveTheme(context, ref, selection.first, l10n);
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  if (constraints.maxWidth < 340) {
+                    return InputDecorator(
+                      decoration: InputDecoration(labelText: l10n.appearance),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<ThemeMode>(
+                          value: settings.themeMode,
+                          isExpanded: true,
+                          items: [
+                            DropdownMenuItem(
+                              value: ThemeMode.system,
+                              child: Text(l10n.systemMode),
+                            ),
+                            DropdownMenuItem(
+                              value: ThemeMode.light,
+                              child: Text(l10n.lightMode),
+                            ),
+                            DropdownMenuItem(
+                              value: ThemeMode.dark,
+                              child: Text(l10n.darkMode),
+                            ),
+                          ],
+                          onChanged: settingsReady
+                              ? (mode) {
+                                  if (mode != null) {
+                                    _saveTheme(context, ref, mode, l10n);
+                                  }
+                                }
+                              : null,
+                        ),
+                      ),
+                    );
                   }
+
+                  return SegmentedButton<ThemeMode>(
+                    segments: [
+                      ButtonSegment(
+                        value: ThemeMode.system,
+                        label: Text(l10n.systemMode),
+                        icon: const Icon(Icons.brightness_auto_outlined),
+                      ),
+                      ButtonSegment(
+                        value: ThemeMode.light,
+                        label: Text(l10n.lightMode),
+                        icon: const Icon(Icons.light_mode_outlined),
+                      ),
+                      ButtonSegment(
+                        value: ThemeMode.dark,
+                        label: Text(l10n.darkMode),
+                        icon: const Icon(Icons.dark_mode_outlined),
+                      ),
+                    ],
+                    selected: {settings.themeMode},
+                    onSelectionChanged: settingsReady
+                        ? (selection) {
+                            if (selection.isNotEmpty) {
+                              _saveTheme(context, ref, selection.first, l10n);
+                            }
+                          }
+                        : null,
+                  );
                 },
               ),
               const SizedBox(height: AppTokens.space32),
@@ -99,26 +139,68 @@ class SettingsScreen extends ConsumerWidget {
                 description: l10n.languageDescription,
               ),
               const SizedBox(height: AppTokens.space16),
-              SegmentedButton<String>(
-                segments: [
-                  ButtonSegment(
-                    value: 'system',
-                    label: Text(l10n.followSystem),
-                  ),
-                  ButtonSegment(value: 'en', label: Text(l10n.english)),
-                  ButtonSegment(value: 'ar', label: Text(l10n.arabic)),
-                ],
-                selected: {settings.locale?.languageCode ?? 'system'},
-                onSelectionChanged: (selection) {
-                  if (selection.isNotEmpty) {
-                    final value = selection.first;
-                    final locale = switch (value) {
-                      'en' => const Locale('en'),
-                      'ar' => const Locale('ar'),
-                      _ => null,
-                    };
-                    _saveLocale(context, ref, locale, l10n);
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  if (constraints.maxWidth < 340) {
+                    return InputDecorator(
+                      decoration: InputDecoration(labelText: l10n.language),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: settings.locale?.languageCode ?? 'system',
+                          isExpanded: true,
+                          items: [
+                            DropdownMenuItem(
+                              value: 'system',
+                              child: Text(l10n.followSystem),
+                            ),
+                            DropdownMenuItem(
+                              value: 'en',
+                              child: Text(l10n.english),
+                            ),
+                            DropdownMenuItem(
+                              value: 'ar',
+                              child: Text(l10n.arabic),
+                            ),
+                          ],
+                          onChanged: settingsReady
+                              ? (value) {
+                                  final locale = switch (value) {
+                                    'en' => const Locale('en'),
+                                    'ar' => const Locale('ar'),
+                                    _ => null,
+                                  };
+                                  _saveLocale(context, ref, locale, l10n);
+                                }
+                              : null,
+                        ),
+                      ),
+                    );
                   }
+
+                  return SegmentedButton<String>(
+                    segments: [
+                      ButtonSegment(
+                        value: 'system',
+                        label: Text(l10n.followSystem),
+                      ),
+                      ButtonSegment(value: 'en', label: Text(l10n.english)),
+                      ButtonSegment(value: 'ar', label: Text(l10n.arabic)),
+                    ],
+                    selected: {settings.locale?.languageCode ?? 'system'},
+                    onSelectionChanged: settingsReady
+                        ? (selection) {
+                            if (selection.isNotEmpty) {
+                              final value = selection.first;
+                              final locale = switch (value) {
+                                'en' => const Locale('en'),
+                                'ar' => const Locale('ar'),
+                                _ => null,
+                              };
+                              _saveLocale(context, ref, locale, l10n);
+                            }
+                          }
+                        : null,
+                  );
                 },
               ),
             ],

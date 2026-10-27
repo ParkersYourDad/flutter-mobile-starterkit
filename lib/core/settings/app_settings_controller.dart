@@ -21,7 +21,7 @@ class AppSettingsController extends AsyncNotifier<AppSettings> {
   }
 
   Future<void> setThemeMode(ThemeMode mode) async {
-    final current = state.requireValue;
+    final current = state.value ?? await future;
     state = AsyncData(current.copyWith(themeMode: mode));
 
     try {
@@ -35,7 +35,7 @@ class AppSettingsController extends AsyncNotifier<AppSettings> {
   }
 
   Future<void> setLocale(Locale? locale) async {
-    final current = state.requireValue;
+    final current = state.value ?? await future;
     state = AsyncData(
       locale == null
           ? current.copyWith(clearLocale: true)

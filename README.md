@@ -16,7 +16,7 @@ A focused Flutter foundation for Android and iOS, with neutral design tokens, Ar
 
 ## Repository status
 
-The app source and native Android/iOS project scaffolding are committed. CI verifies formatting, analysis, tests, and platform builds. Physical-device checks, a targeted accessibility review, the repository's own reuse license decision, and release readiness remain open gates. Do not treat this starter as release-ready until those gates pass.
+The app source and native Android/iOS project scaffolding are committed. CI verifies formatting, analysis, tests, and platform builds. Physical-device checks, a targeted accessibility review, and release readiness remain open gates. Do not treat this starter as release-ready until those gates pass.
 
 ## Toolchain and local checks
 
@@ -51,4 +51,4 @@ A control must perform its stated action or be explicitly disabled. No secrets o
 
 ## License
 
-No license has been selected yet. Do not assume permission to reuse or redistribute this repository until a license is added.
+The project source code is licensed under the MIT License (see `LICENSE`). Bundled IBM Plex Sans Arabic font files are separately licensed under SIL Open Font License 1.1; see `assets/fonts/ibm_plex_sans_arabic/OFL.txt`.
