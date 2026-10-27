@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_mobile_starterkit/app/app.dart';
-import 'package:flutter_mobile_starterkit/core/settings/app_settings_repository.dart';
 import 'package:flutter_mobile_starterkit/core/settings/app_settings.dart';
+import 'package:flutter_mobile_starterkit/core/settings/app_settings_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter/material.dart';
 
 class FakeAppSettingsRepository implements AppSettingsRepository {
   FakeAppSettingsRepository([this.settings = const AppSettings()]);
